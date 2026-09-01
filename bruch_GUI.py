@@ -9,7 +9,7 @@ class bruch_GUI:
         self.rechner=Bruch_rechner()
 
         fenster=Tk()
-        fenster.geometry("700x400")
+        fenster.geometry("400x200")
         fenster.title("Bruch-Rechner")
 
 # Bruch 1
@@ -17,11 +17,11 @@ class bruch_GUI:
         self.la1string.set("Bruch 1")
         self.la1=Label(fenster,width=8, textvariable=self.la1string).grid(row=1, column=1, columnspan= 2)
 
-        self.en1string=StringVar()
+        self.en1string=IntVar()
         self.en1string.set("1")
         self.en1=Entry(fenster,width=8, textvariable=self.en1string).grid(row=2, column=1, columnspan= 2)
 
-        self.en2string=StringVar()
+        self.en2string=IntVar()
         self.en2string.set("1")
         self.en2=Entry(fenster,width=8, textvariable=self.en2string).grid(row=3, column=1, columnspan= 2)
 
@@ -36,11 +36,11 @@ class bruch_GUI:
         self.la2string.set("Bruch 2")
         self.la2=Label(fenster,width=8, textvariable=self.la2string).grid(row=1, column=5, columnspan= 2)
 
-        self.en3string=StringVar()
+        self.en3string=IntVar()
         self.en3string.set("1")
         self.en3=Entry(fenster,width=8, textvariable=self.en3string).grid(row=2, column=5, columnspan= 2)
 
-        self.en4string=StringVar()
+        self.en4string=IntVar()
         self.en4string.set("1")
         self.en4=Entry(fenster,width=8, textvariable=self.en4string).grid(row=3, column=5, columnspan= 2)
 
@@ -55,15 +55,15 @@ class bruch_GUI:
         self.la3string.set("Ergebnis")
         self.la3=Label(fenster,width=8, textvariable=self.la3string).grid(row=1, column=9, columnspan= 2)
 
-        self.la5string=StringVar()
+        self.la5string=IntVar()
         self.la5string.set("1")
         self.la5=Label(fenster,width=8, textvariable=self.la5string).grid(row=2, column=9, columnspan= 2)
 
-        self.la6string=StringVar()
+        self.la6string=IntVar()
         self.la6string.set("1")
-        self.la6=Label(fenster,width=8, textvariable=self.la6string).grid(row=3, column=9, columnspan= 2)
+        self.la6=Label(fenster,width=10, textvariable=self.la6string).grid(row=3, column=9, columnspan= 2)
 
-# Label fÃ¼r abstand
+# Label fuer abstand
         self.la7string=StringVar()
         self.la7string.set("")
         self.la7=Label(fenster,width=8, textvariable=self.la7string).grid(row=4, column=1, columnspan= 8)
@@ -71,12 +71,12 @@ class bruch_GUI:
 # Button +
         self.bu1string=StringVar()
         self.bu1string.set("+")
-        self.bu1=Button(fenster,width=8, textvariable=self.bu1string, command=self.mult_zeichen).grid(row=5, column=1, columnspan= 2)
+        self.bu1=Button(fenster,width=8, textvariable=self.bu1string, command=self.add_zeichen).grid(row=5, column=1, columnspan= 2)
 
 # Button -
         self.bu2string=StringVar()
         self.bu2string.set("-")
-        self.bu2=Button(fenster,width=8, textvariable=self.bu2string,command=self.mult_zeichen).grid(row=5, column=3, columnspan= 2)
+        self.bu2=Button(fenster,width=8, textvariable=self.bu2string,command=self.sub_zeichen).grid(row=5, column=3, columnspan= 2)
 
 # Button *
         self.bu3string=StringVar()
@@ -86,21 +86,31 @@ class bruch_GUI:
 # Button /
         self.bu4string=StringVar()
         self.bu4string.set("/")
-        self.bu4=Button(fenster,width=8, textvariable=self.bu4string,command=self.mult_zeichen).grid(row=5, column=7, columnspan= 2)
+        self.bu4=Button(fenster,width=8, textvariable=self.bu4string,command=self.div_zeichen).grid(row=5, column=7, columnspan= 2)
+
+# Button Berechne
+        self.bu5string=StringVar()
+        self.bu5string.set("Berechne")
+        self.bu5=Button(fenster,width=8, textvariable=self.bu5string,command=self.anzeigeAktualisieren).grid(row=5, column=9, columnspan= 2)
+
 
 # def funktionen
     def rechenzeichen_bruch(self):
         if self.rechner.rechenart == "add":
             self.la4string.set("+")
+            self.rechner.rechenart = "add"
 
         elif self.rechner.rechenart == "sub":
             self.la4string.set("-")
+            self.rechner.rechenart = "sub"
 
         elif self.rechner.rechenart == "div":
             self.la4string.set("/")
+            self.rechner.rechenart = "div"
 
         elif self.rechner.rechenart == "mul":
             self.la4string.set("*")
+            self.rechner.rechenart = "mul"
 
         else:
             print("Feher bei rechenzeichen_Bruch()")
@@ -122,14 +132,32 @@ class bruch_GUI:
     #         print("Feher bei rechnen()")
 
     def mult_zeichen(self):
-        self.rechner.multipizieren(self.en1string, self.en2string, self.en3string, self.en4string)
+        self.rechner.multipizieren(self.en1string.get(), self.en2string.get(), self.en3string.get(), self.en4string.get())
         self.rechenzeichen_bruch()
+        #self.
+
+    def add_zeichen(self):
+        self.rechner.addieren(self.en1string.get(), self.en2string.get(), self.en3string.get(), self.en4string.get())
+        self.rechenzeichen_bruch()
+
+    def sub_zeichen(self):
+        self.rechner.subtrahieren(self.en1string.get(), self.en2string.get(), self.en3string.get(), self.en4string.get())
+        self.rechenzeichen_bruch()
+
+    def div_zeichen(self):
+        self.rechner.dividieren(self.en1string.get(), self.en2string.get(), self.en3string.get(), self.en4string.get())
+        self.rechenzeichen_bruch()
+
+
+    def ergebnis_aktualisieren(self):
+        self.la5string.set(self.rechner.ergebnis_zaehler)
+        self.la6string.set(self.rechner.ergebnis_nenner)
 
     def datenAktualisieren(self):
         pass
         
     def anzeigeAktualisieren(self):
-        pass
+        self.ergebnis_aktualisieren()
 
 
 # Main loop
