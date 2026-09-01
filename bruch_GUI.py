@@ -63,7 +63,7 @@ class bruch_GUI:
         self.la6string.set("1")
         self.la6=Label(fenster,width=8, textvariable=self.la6string).grid(row=3, column=9, columnspan= 2)
 
-# Label für abstand
+# Label fÃ¼r abstand
         self.la7string=StringVar()
         self.la7string.set("")
         self.la7=Label(fenster,width=8, textvariable=self.la7string).grid(row=4, column=1, columnspan= 8)
@@ -104,6 +104,25 @@ class bruch_GUI:
 
         else:
             print("Feher bei rechenzeichen_Bruch()")
+
+
+    def rechenen():
+        if self.rechner.rechenart == "add":
+            self.rechner.addieren(self.en1string, self.en2string, self.en3string, self.en4string)
+
+        elif self.rechner.rechenart == "sub":
+            self.rechner.subtrahieren(self.en1string, self.en2string, self.en3string, self.en4string)
+
+        elif self.rechner.rechenart == "div":
+            self.rechner.dividieren(self.en1string, self.en2string, self.en3string, self.en4string)
+
+        elif self.rechner.rechenart == "mul":
+            self.rechner.multiplizieren(self.en1string, self.en2string, self.en3string, self.en4string)
+
+        else:
+            print("Feher bei rechenzeichen_Bruch()")
+
+
 
     def datenAktualisieren(self):
         pass
