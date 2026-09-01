@@ -27,8 +27,8 @@ class Bruch_rechner():
     def multipizieren(self, zaehler1, nenner1, zaehler2, nenner2):
         print("multiplizieren")
         self.rechenart = "mul"
-        ergebnis_zaehler= self.zaehler1 * self.zaehler2
-        ergebnis_nenner = self.nenner1 * self.nenner2
+        ergebnis_zaehler= zaehler1 * zaehler2
+        ergebnis_nenner = nenner1 * nenner2
 
 
 #        return self.rechenart

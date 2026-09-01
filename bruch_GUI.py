@@ -71,58 +71,59 @@ class bruch_GUI:
 # Button +
         self.bu1string=StringVar()
         self.bu1string.set("+")
-        self.bu1=Button(fenster,width=8, textvariable=self.bu1string, command=self.rechner.addieren()).grid(row=5, column=1, columnspan= 2)
+        self.bu1=Button(fenster,width=8, textvariable=self.bu1string, command=self.mult_zeichen).grid(row=5, column=1, columnspan= 2)
 
 # Button -
         self.bu2string=StringVar()
         self.bu2string.set("-")
-        self.bu2=Button(fenster,width=8, textvariable=self.bu2string,command=self.rechner.subtrahieren()).grid(row=5, column=3, columnspan= 2)
+        self.bu2=Button(fenster,width=8, textvariable=self.bu2string,command=self.mult_zeichen).grid(row=5, column=3, columnspan= 2)
 
 # Button *
         self.bu3string=StringVar()
         self.bu3string.set("*")
-        self.bu3=Button(fenster,width=8, textvariable=self.bu3string,command=self.rechner.multipizieren()).grid(row=5, column=5, columnspan= 2)
+        self.bu3=Button(fenster,width=8, textvariable=self.bu3string,command=self.mult_zeichen).grid(row=5, column=5, columnspan= 2)
 
 # Button /
         self.bu4string=StringVar()
         self.bu4string.set("/")
-        self.bu4=Button(fenster,width=8, textvariable=self.bu4string,command=self.rechner.dividieren()).grid(row=5, column=7, columnspan= 2)
+        self.bu4=Button(fenster,width=8, textvariable=self.bu4string,command=self.mult_zeichen).grid(row=5, column=7, columnspan= 2)
 
 # def funktionen
     def rechenzeichen_bruch(self):
         if self.rechner.rechenart == "add":
-            la4string.set("+")
+            self.la4string.set("+")
 
         elif self.rechner.rechenart == "sub":
-            la4string.set("-")
+            self.la4string.set("-")
 
         elif self.rechner.rechenart == "div":
-            la4string.set("/")
+            self.la4string.set("/")
 
         elif self.rechner.rechenart == "mul":
-            la4string.set("*")
+            self.la4string.set("*")
 
         else:
             print("Feher bei rechenzeichen_Bruch()")
 
+    # def rechnen(self):
+    #     if self.rechner.rechenart == "add":
+    #         self.rechner.addieren(self.en1string, self.en2string, self.en3string, self.en4string)
 
-    def rechenen():
-        if self.rechner.rechenart == "add":
-            self.rechner.addieren(self.en1string, self.en2string, self.en3string, self.en4string)
+    #     elif self.rechner.rechenart == "sub":
+    #         self.rechner.subtrahieren(self.en1string, self.en2string, self.en3string, self.en4string)
 
-        elif self.rechner.rechenart == "sub":
-            self.rechner.subtrahieren(self.en1string, self.en2string, self.en3string, self.en4string)
+    #     elif self.rechner.rechenart == "div":
+    #         self.rechner.dividieren(self.en1string, self.en2string, self.en3string, self.en4string)
 
-        elif self.rechner.rechenart == "div":
-            self.rechner.dividieren(self.en1string, self.en2string, self.en3string, self.en4string)
+    #     elif self.rechner.rechenart == "mul":
+    #         self.rechner.multiplizieren(self.en1string, self.en2string, self.en3string, self.en4string)
 
-        elif self.rechner.rechenart == "mul":
-            self.rechner.multiplizieren(self.en1string, self.en2string, self.en3string, self.en4string)
+    #     else:
+    #         print("Feher bei rechnen()")
 
-        else:
-            print("Feher bei rechenzeichen_Bruch()")
-
-
+    def mult_zeichen(self):
+        self.rechner.multipizieren(self.en1string, self.en2string, self.en3string, self.en4string)
+        self.rechenzeichen_bruch()
 
     def datenAktualisieren(self):
         pass
